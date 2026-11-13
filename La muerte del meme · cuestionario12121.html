@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>La muerte del meme · cuestionario</title>
+<style>
+:root{
+  --bg:#ecebe6;--fg:#111;--card:#fbfaf6;--muted:#555;--line:#111;--accent:#d4006a;--accent2:#0a7d3c;--bad:#c00;--on-accent:#fff;
+  box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){--bg:#070707;--fg:#d8ffd0;--card:#101310;--muted:#8fae8a;--line:#2e4a2a;--accent:#b6ff3c;--accent2:#39ff88;--bad:#ff4a4a;--on-accent:#070707}
+}
+:root[data-theme="dark"]{--bg:#070707;--fg:#d8ffd0;--card:#101310;--muted:#8fae8a;--line:#2e4a2a;--accent:#b6ff3c;--accent2:#39ff88;--bad:#ff4a4a;--on-accent:#070707}
+*,*::before,*::after{box-sizing:border-box}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+body{margin:0;background:var(--bg);color:var(--fg);font-family:"Space Mono","Courier New",monospace;line-height:1.5;
+ background-image:repeating-linear-gradient(0deg,transparent 0 3px,rgba(128,128,128,.07) 3px 4px)}
+.wrap{max-width:780px;margin:0 auto;padding:18px 14px 70px}
+h1{font-size:clamp(1.8rem,8vw,3rem);line-height:1;margin:6px 0 4px;text-transform:uppercase;letter-spacing:-.02em;position:relative;text-shadow:3px 0 var(--accent),-3px 0 var(--accent2);animation:gl 3.2s infinite steps(1)}
+@keyframes gl{0%,90%,100%{text-shadow:3px 0 var(--accent),-3px 0 var(--accent2);transform:none}92%{text-shadow:-6px 0 var(--accent),6px 0 var(--accent2);transform:translateX(3px) skewX(-4deg)}95%{text-shadow:5px 2px var(--accent2),-5px -2px var(--accent);transform:translateX(-4px)}}
+@media (prefers-reduced-motion:reduce){h1{animation:none}}
+.sub{color:var(--muted);margin:0 0 16px;font-size:.9rem}
+.box,.q{background:var(--card);border:1px solid var(--line);border-radius:4px;padding:14px;margin-bottom:12px}
+h2{font-size:1.05rem;margin:22px 0 10px;text-transform:uppercase;border-bottom:2px solid var(--accent);padding-bottom:4px}
+.q .n{color:var(--accent);font-weight:700;font-size:.8rem}
+.q h3{margin:2px 0 10px;font-size:.98rem;line-height:1.4}
+.opt{display:block;border:1px solid var(--line);border-radius:4px;padding:8px 10px;margin:6px 0;cursor:pointer}
+.opt input{margin-right:8px;accent-color:var(--accent)}
+.opt.ok{border-color:var(--accent2);box-shadow:inset 4px 0 var(--accent2)}
+.opt.no{border-color:var(--bad);box-shadow:inset 4px 0 var(--bad)}
+.fb{display:none;margin-top:8px;font-size:.85rem;color:var(--muted)}
+.fb b{color:var(--fg)}
+input[type=text],textarea{width:100%;background:var(--bg);color:var(--fg);border:1px solid var(--line);border-radius:4px;padding:10px;font:inherit}
+textarea{min-height:90px;resize:vertical}
+label.l{display:block;font-size:.8rem;color:var(--muted);margin:8px 0 4px}
+.btn{background:var(--accent);color:var(--on-accent);border:0;border-radius:4px;padding:11px 16px;font:inherit;font-weight:700;cursor:pointer;text-transform:uppercase}
+.btn:disabled{opacity:.45;cursor:not-allowed}
+.btn.ghost{background:transparent;color:var(--fg);border:1px solid var(--line)}
+a{color:var(--accent);font-weight:700}
+.score{display:none;text-align:center;padding:18px;border:2px dashed var(--accent);margin:12px 0}
+.score .big{font-size:2.6rem;font-weight:700;color:var(--accent)}
+.prev{max-width:100%;max-height:320px;display:none;margin-top:10px;border:1px solid var(--line)}
+.note{font-size:.8rem;color:var(--muted);margin-top:8px}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>La muerte del meme</h1>
+  <p class="sub">hyper_meme.exe // preguntas abiertas en pareja + Benjamin</p>
+
+  <div class="box">
+    <p style="margin-top:0"><b>1.</b> Mira el video: <a href="https://www.youtube.com/watch?v=xrzSnIoQUzs" target="_blank" rel="noopener">La muerte del meme: el devenir del hypermeme</a>.<br><b>2.</b> Hojeen la tesis <i>La imagen en la era de su hiperreferencialidad</i> (el PDF que te compartió tu profe) <b>solo para buscar una imagen</b>: no tienes que leerla.<br><b>3.</b> Contesten las preguntas, analicen su imagen y descarguen su PDF.</p>
+    <label class="l" for="nm">Integrante 1</label>
+    <input type="text" id="nm" placeholder="Nombre y apellido">
+    <label class="l" for="nm2">Integrante 2</label>
+    <input type="text" id="nm2" placeholder="Nombre y apellido">
+  </div>
+
+  <h2>Preguntas abiertas (11)</h2>
+  <p class="sub">Contesten en pareja, con sus palabras y en 2 a 4 líneas cada una. Con <b>3 respuestas</b> ya aprueban; entre más contesten, mejor.</p>
+  <div id="op"></div>
+
+  <h2>Su imagen + Walter Benjamin</h2>
+  <div class="box">
+    <p style="margin-top:0">Elijan una imagen de la tesis que les llame la atención, tómenle captura y súbanla aquí. Cuenten por qué la eligieron y desarróllenla con Benjamin: ¿tiene aura? ¿dónde está su “aquí y ahora”? ¿cuántas veces se ha copiado, remixeado o deformado? ¿qué pasa con su aura cuando se vuelve hypermeme?</p>
+    <label class="l" for="pg">Página o capítulo de la tesis donde la encontraste</label>
+    <input type="text" id="pg" placeholder="Ej. p. 45, capítulo 3.4">
+    <label class="l" for="img">Su imagen</label>
+    <input type="file" id="img" accept="image/*">
+    <img id="prev" class="prev" alt="Vista previa de tu imagen">
+    <label class="l" for="bj">Por qué la eligieron + su análisis (6 a 10 líneas)</label>
+    <textarea id="bj" style="min-height:170px" placeholder="Describe la imagen y conéctala con aura, reproducción técnica y copia…"></textarea>
+  </div>
+
+  <button class="btn" id="pdf">Descargar su PDF</button>
+  <p class="note" id="st"></p>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<script>
+var OP=[
+"¿De qué trata el video? Cuéntenlo con sus palabras.",
+"¿Qué es un hypermeme? Explíquenlo como si se lo contaran a un amigo.",
+"¿Qué les pasa a los memes y a sus plantillas según el video?",
+"¿Qué imágenes, sonidos o ediciones del video les llamaron la atención? ¿Qué estética de internet reconocen?",
+"El video dice que el exceso de contenido sirve para experimentar. ¿Están de acuerdo? ¿Basura digital o tierra fértil?",
+"¿Cuál es el meme más raro o deformado que conocen? Cuéntenlo.",
+"¿Qué es el aura según Walter Benjamin? (pueden buscarlo)",
+"¿Un meme tiene aura? ¿Y un hypermeme? Defiendan su respuesta.",
+"▒ ¿Qué imagen o meme los infectó esta semana y por qué no se les quita?",
+"▒ Diseñen su hypermeme: ¿qué plantilla raptarían y cómo la descompondrían?",
+"▒ Su estética de internet en tres palabras, y qué se llevan a su proyecto."
+];
+var pic=null;
+var $=function(i){return document.getElementById(i)};
+var op=$("op");
+OP.forEach(function(t,i){
+  var d=document.createElement("div");d.className="q";
+  d.innerHTML='<span class="n">// '+(i<9?"0":"")+(i+1)+'</span><h3>'+t.replace("▒ ","")+'</h3><textarea id="o'+i+'"></textarea>';op.appendChild(d);
+  d.querySelector("textarea").oninput=count;
+});
+function done(){var n=0;OP.forEach(function(_,i){if($("o"+i).value.trim().length>=25)n++;});return n;}
+function count(){}
+$("img").onchange=function(e){
+  var f=e.target.files[0];if(!f)return;
+  var rd=new FileReader();
+  rd.onload=function(){
+    var im=new Image();
+    im.onload=function(){
+      var m=Math.min(1,900/Math.max(im.width,im.height)),c=document.createElement("canvas");
+      c.width=Math.round(im.width*m);c.height=Math.round(im.height*m);
+      var cx=c.getContext("2d");cx.fillStyle="#fff";cx.fillRect(0,0,c.width,c.height);cx.drawImage(im,0,0,c.width,c.height);
+      pic={u:c.toDataURL("image/jpeg",.82),w:c.width,h:c.height};
+      var p=$("prev");p.src=pic.u;p.style.display="block";
+    };
+    im.src=rd.result;
+  };
+  rd.readAsDataURL(f);
+};
+$("pdf").onclick=async function(){
+  var st=$("st");
+  var name=$("nm").value.trim(),name2=$("nm2").value.trim();
+  if(!name){st.textContent="Pongan al menos el nombre del integrante 1.";$("nm").focus();return;}
+  var n=done();
+  if(n<3){st.textContent="Les faltan respuestas: contesten mínimo 3 (de al menos una línea).";return;}
+  if(!window.jspdf){st.textContent="No cargó el generador de PDF. Recarguen la página.";return;}
+  var dl=null;try{dl=await claude.use("downloads");}catch(e){}
+  if(!dl){st.textContent="Aquí no se puede descargar. Abran la página en claude.ai.";return;}
+  var doc=new window.jspdf.jsPDF({unit:"mm",format:"letter"}),y=18;
+  function add(t,s,b,g){
+    doc.setFont("helvetica",b?"bold":"normal");doc.setFontSize(s);
+    doc.splitTextToSize(String(t),178).forEach(function(l){if(y>272){doc.addPage();y=18;}doc.text(l,17,y);y+=s*0.5+1.3;});
+    y+=g||0;
+  }
+  add("LA MUERTE DEL MEME - Preguntas en pareja",16,true,2);
+  add("Integrante 1: "+name,11,false);
+  add("Integrante 2: "+(name2||"(sin pareja)"),11,false);
+  add("Fecha: "+new Date().toLocaleDateString("es-MX"),11,false);
+  add("Preguntas contestadas: "+n+" / "+OP.length+"  (minimo 3 para aprobar: "+(n>=3?"CUMPLIDO":"NO")+")",12,true,4);
+  add("PREGUNTAS ABIERTAS",12,true,1);
+  OP.forEach(function(t,i){add((i+1)+". "+t.replace("▒ ",""),10,true);add($("o"+i).value||"(sin responder)",10,false,3);});
+  add("IMAGEN Y WALTER BENJAMIN",12,true,1);
+  add("Pagina o capitulo de la tesis: "+($("pg").value||"(sin dato)"),10,false,2);
+  if(pic){
+    var w=120,h=pic.h/pic.w*w;if(h>95){h=95;w=pic.w/pic.h*h;}
+    if(y+h>272){doc.addPage();y=18;}
+    doc.addImage(pic.u,"JPEG",17,y,w,h);y+=h+5;
+  }else add("(sin imagen)",10,false);
+  add($("bj").value||"(sin analisis)",10,false);
+  try{
+    await dl.save({filename:"hypermeme_"+(name+" "+name2).toLowerCase().replace(/[^a-z0-9]+/g,"_")+".pdf",data:doc.output("blob")});
+    st.textContent="Listo. Entreguen su PDF como indique su profe.";
+  }catch(err){
+    st.textContent=(err&&err.code==="declined")?"Cancelaron la descarga. Pueden intentarlo otra vez.":"No se pudo descargar aquí. Abran la página en claude.ai.";
+  }
+};
+</script>
+</body>
+</html>
