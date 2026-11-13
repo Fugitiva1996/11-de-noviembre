@@ -119,15 +119,18 @@ $("img").onchange=function(e){
   };
   rd.readAsDataURL(f);
 };
-$("pdf").onclick=async function(){
+$("pdf").onclick=function(){
+  $("st").textContent="Generando PDF…";
+  run().catch(function(e){$("st").textContent="Error al generar el PDF: "+(e&&e.message?e.message:e);});
+};
+async function run(){
   var st=$("st");
   var name=$("nm").value.trim(),name2=$("nm2").value.trim();
   if(!name){st.textContent="Pongan al menos el nombre del integrante 1.";$("nm").focus();return;}
   var n=done();
-  if(n<3){st.textContent="Les faltan respuestas: contesten mínimo 3 (de al menos una línea).";return;}
   if(!window.jspdf){st.textContent="No cargó el generador de PDF. Recarguen la página.";return;}
   var dl=null;try{dl=await claude.use("downloads");}catch(e){}
-  if(!dl){st.textContent="Aquí no se puede descargar. Abran la página en claude.ai.";return;}
+  if(!dl){dl={save:function(o){var a=document.createElement("a");a.href=URL.createObjectURL(o.data);a.download=o.filename;document.body.appendChild(a);a.click();setTimeout(function(){a.remove();URL.revokeObjectURL(a.href);},1500);return Promise.resolve();}};}
   var doc=new window.jspdf.jsPDF({unit:"mm",format:"letter"}),y=18;
   function add(t,s,b,g){
     doc.setFont("helvetica",b?"bold":"normal");doc.setFontSize(s);
@@ -137,7 +140,7 @@ $("pdf").onclick=async function(){
   add("LA MUERTE DEL MEME - Preguntas en pareja",16,true,2);
   add("Integrante 1: "+name,11,false);
   add("Integrante 2: "+(name2||"(sin pareja)"),11,false);
-  add("Fecha: "+new Date().toLocaleDateString("es-MX"),11,false);
+  add("Fecha y hora: "+new Date().toLocaleString("es-MX",{dateStyle:"long",timeStyle:"short"}),11,false);
   add("Preguntas contestadas: "+n+" / "+OP.length+"  (minimo 3 para aprobar: "+(n>=3?"CUMPLIDO":"NO")+")",12,true,4);
   add("PREGUNTAS ABIERTAS",12,true,1);
   OP.forEach(function(t,i){add((i+1)+". "+t.replace("▒ ",""),10,true);add($("o"+i).value||"(sin responder)",10,false,3);});
@@ -153,9 +156,9 @@ $("pdf").onclick=async function(){
     await dl.save({filename:"hypermeme_"+(name+" "+name2).toLowerCase().replace(/[^a-z0-9]+/g,"_")+".pdf",data:doc.output("blob")});
     st.textContent="Listo. Entreguen su PDF como indique su profe.";
   }catch(err){
-    st.textContent=(err&&err.code==="declined")?"Cancelaron la descarga. Pueden intentarlo otra vez.":"No se pudo descargar aquí. Abran la página en claude.ai.";
+    st.textContent=(err&&err.code==="declined")?"Cancelaron la descarga. Pueden intentarlo otra vez.":"No se pudo descargar ("+(err&&err.code?err.code:"error")+"). Intenten de nuevo o usen otro navegador.";
   }
-};
+}
 </script>
 </body>
 </html>
